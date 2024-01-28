@@ -1,0 +1,11 @@
+{
+  "title": "Portfolio",
+  "aboutMe": {
+    "description": "Aficionado por tecnologia e desenvolvimento de sistemas desde 2015. Estou no mercado a {{years}} anos construindo aplicações altamente escaláveis utilizando o que há de mais clássico na literatura e as tecnologias mais atuais do mercado."
+  },
+  "sideMenu": {
+    "aboutMe": "Sobre",
+    "experience": "Habilidades",
+    "projects": "Projetos"
+  }
+}
