@@ -1,0 +1,13 @@
+<ng-container class="w-full" *transloco="let t; read 'sideMenu'" >
+  @for (item of menuItems; track item.label; let idx = $index) {
+    <button
+      (click)="selectItem(idx)"
+      [ngClass]="{
+        'menu-active': idx === selectedItemIndex(),
+      }"
+      class="h-6 hover:menu-active transition-all duration-500 ease-in-out cursor-pointer relative flex w-40 items-center" >
+      <div class="flex-1 border-t-2 border-purple-500 opacity-50" ></div >
+      <span class="px-3 text-purple-500 bg-white opacity-60" >{{t(item.label)}}</span >
+    </button >
+  }
+</ng-container >

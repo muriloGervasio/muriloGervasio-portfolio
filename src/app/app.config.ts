@@ -4,17 +4,22 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
 import { provideTransloco } from '@ngneat/transloco';
-import {TranslocoHttpLoader} from "./shared/services/transloco.service";
+import { TranslocoHttpLoader } from './shared/services/transloco.service';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideHttpClient(), provideTransloco({
-        config: {
-            availableLangs: ['en', 'pt'],
-            defaultLang: 'pt',
-            reRenderOnLangChange: true,
-            prodMode: !isDevMode(),
-        },
-        loader: TranslocoHttpLoader
-    }), provideAnimations()]
+  providers: [
+    provideRouter(routes),
+    provideHttpClient(),
+    provideTransloco({
+      config: {
+        availableLangs: ['en', 'pt'],
+        defaultLang: 'pt',
+        reRenderOnLangChange: true,
+        prodMode: !isDevMode(),
+      },
+      loader: TranslocoHttpLoader,
+    }),
+    provideAnimations(),
+  ],
 };

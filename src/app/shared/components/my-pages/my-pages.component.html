@@ -1,0 +1,17 @@
+<ng-container >
+  <div class="flex flex-row items-center w-full justify-center gap-5">
+    @for (item of items; track item.link) {
+      <a
+        matTooltip="{{ item.tooltip }}"
+        href="{{ item.link }}"
+        target="_blank"
+      >
+        <img
+          class="hover:h-15 hover:w-15 background-animate h-10 w-10 rounded-md bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500"
+          [src]="'assets/icons/' + item.icon + '.svg'"
+          [alt]="item.icon"
+        />
+      </a>
+    }
+  </div>
+</ng-container>

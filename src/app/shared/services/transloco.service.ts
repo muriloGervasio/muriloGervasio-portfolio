@@ -1,11 +1,11 @@
-import {inject, Injectable} from "@angular/core";
-import {Translation, TranslocoLoader} from "@ngneat/transloco";
-import {TranslocoLoaderData} from "@ngneat/transloco/lib/transloco.loader";
-import {Observable} from "rxjs";
-import {HttpClient} from "@angular/common/http";
+import { inject, Injectable } from '@angular/core';
+import { Translation, TranslocoLoader } from '@ngneat/transloco';
+import { TranslocoLoaderData } from '@ngneat/transloco/lib/transloco.loader';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TranslocoHttpLoader implements TranslocoLoader {
   private http = inject(HttpClient);
@@ -13,5 +13,4 @@ export class TranslocoHttpLoader implements TranslocoLoader {
   getTranslation(lang: string) {
     return this.http.get<Translation>(`/assets/i18n/${lang}.json`);
   }
-
 }
