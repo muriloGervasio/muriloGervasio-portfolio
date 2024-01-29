@@ -1,6 +1,7 @@
 import {
   Component,
   computed,
+  effect,
   ElementRef,
   inject,
   Signal,
@@ -9,7 +10,7 @@ import {
   WritableSignal,
 } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { TranslocoModule } from '@ngneat/transloco';
+import { TranslocoModule, TranslocoService } from '@ngneat/transloco';
 import { AboutMeComponent } from './shared/components/about-me/about-me.component';
 import { MyPagesComponent } from './shared/components/my-pages/my-pages.component';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
@@ -19,6 +20,10 @@ import { ProjectsComponent } from './shared/components/projects/projects.compone
 import { AboutComponent } from './shared/components/about/about.component';
 import { ExperienceComponent } from './shared/components/experience/experience.component';
 import { InsideViewportDirective } from './shared/directives/on-view.directive';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatButtonModule } from '@angular/material/button';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatRippleModule } from '@angular/material/core';
 
 @Component({
   selector: 'app-root',
@@ -34,6 +39,9 @@ import { InsideViewportDirective } from './shared/directives/on-view.directive';
     AboutComponent,
     ExperienceComponent,
     InsideViewportDirective,
+    MatSlideToggleModule,
+    MatButtonModule,
+    MatRippleModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -41,12 +49,21 @@ import { InsideViewportDirective } from './shared/directives/on-view.directive';
 export class AppComponent {
   private readonly iconRegistry = inject(MatIconRegistry);
   private readonly sanitizer = inject(DomSanitizer);
+  private readonly transloco = inject(TranslocoService);
   @ViewChild('about') private readonly aboutComponent!: ElementRef;
   @ViewChild('experience')
   private readonly experienceComponent!: ElementRef;
   @ViewChild('projects') private readonly projectsComponent!: ElementRef;
+  constructor() {
+    effect(() => {
+      console.log(this.isPt());
+      this.transloco.setActiveLang(this.isPt() ? 'pt' : 'en');
+    });
+  }
 
   readonly icons: string[] = ['linkedin', 'instagram', 'github'];
+
+  isPt = signal(true);
 
   ngOnInit() {
     this.loadIcons();
@@ -106,6 +123,12 @@ export class AppComponent {
   }
 
   protected readonly EMenuItem = EMenuItem;
+
+  toggleLanguage(value: boolean): void {
+    this.isPt.set(value);
+  }
+
+  language = computed(() => (this.isPt() ? 'pt-BT' : 'en-US'));
 }
 
 export enum EMenuItem {
