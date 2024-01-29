@@ -6,6 +6,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideTransloco } from '@ngneat/transloco';
 import { TranslocoHttpLoader } from './shared/services/transloco.service';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { APP_BASE_HREF } from '@angular/common';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -21,5 +22,6 @@ export const appConfig: ApplicationConfig = {
       loader: TranslocoHttpLoader,
     }),
     provideAnimations(),
+    { provide: APP_BASE_HREF, useValue: '/portfolio' },
   ],
 };
