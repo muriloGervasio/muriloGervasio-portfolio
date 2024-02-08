@@ -10,5 +10,6 @@ RUN npm run build
 
 # Estagio 2 - Responsável por expor nossa aplicação
 FROM nginx
-COPY --from=node /app/dist /usr/share/nginx/html
+COPY --from=node /app/dist/murilo-gervasio-portfolio/browser /usr/share/nginx/html
 COPY ./angular.conf  /etc/nginx/conf.d/default.conf
+EXPOSE 80

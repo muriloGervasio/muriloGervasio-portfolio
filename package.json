@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": " ng build --configuration production --base-href \"http://www.mrg.dev.br\"",
+    "build": " ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "deploy": "angular-cli-ghpages --dir=dist/murilo-gervasio-portfolio/browser",
     "test": "ng test",

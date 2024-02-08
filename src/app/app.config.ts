@@ -22,6 +22,5 @@ export const appConfig: ApplicationConfig = {
       loader: TranslocoHttpLoader,
     }),
     provideAnimations(),
-    { provide: APP_BASE_HREF, useValue: '/portfolio' },
   ],
 };
