@@ -1,27 +1,52 @@
 <ng-container *transloco="let t" >
+  <div
+    [ngStyle]="{ '--x': mouseX(), '--y': mouseY()}"
+    class=" background"
+  ></div >
   <div class="flex min-h-screen flex-row items-stretch" >
     <div
       class="sticky top-0 flex max-h-screen flex-1 flex-col items-center justify-around p-10"
     >
       <app-about-me ></app-about-me >
-      <app-menu [menuItem]="upperOnView()" (select)="scrollTo($event)" class="w-full" ></app-menu >
+      <app-menu
+        [menuItem]="upperOnView()"
+        (select)="scrollTo($event)"
+        class="w-full"
+      ></app-menu >
       <app-my-pages class="w-full" ></app-my-pages >
     </div >
-    <div class="p-10 flex-1 flex flex-col gap-3" >
+    <div class="flex flex-1 flex-col gap-3 p-10" >
       <div #about >
-        <app-about insideViewport (onView)="this.updateView(EMenuItem.about, $event)" ></app-about >
+        <app-about
+          insideViewport
+          (onView)="this.updateView(EMenuItem.about, $event)"
+        ></app-about >
       </div >
       <div #experience >
-        <app-experience insideViewport (onView)="this.updateView(EMenuItem.experience, $event)" ></app-experience >
+        <app-experience
+          insideViewport
+          (onView)="this.updateView(EMenuItem.experience, $event)"
+        ></app-experience >
       </div >
       <div #projects >
-        <app-projects insideViewport (onView)="this.updateView(EMenuItem.projects, $event)" ></app-projects >
+        <app-projects
+          insideViewport
+          (onView)="this.updateView(EMenuItem.projects, $event)"
+        ></app-projects >
       </div >
     </div >
   </div >
-  <div class="absolute top-2 right-2 flex gap-5 justify-end items-center">
-    <button matRipple (click)="toggleLanguage(true)" class="p-2 text-purple-500">pt-BR</button>
-    <span>|</span>
-    <button matRipple (click)="toggleLanguage(false)" class="p-2 text-pink-500">en-US</button>
-  </div>
+  <div class="absolute right-2 top-2 flex items-center justify-end gap-5" >
+    <button
+      matRipple
+      (click)="toggleLanguage(true)"
+      class="p-2 text-purple-500"
+    >
+      pt-BR
+    </button >
+    <span >|</span >
+    <button matRipple (click)="toggleLanguage(false)" class="p-2 text-pink-500" >
+      en-US
+    </button >
+  </div >
 </ng-container >

@@ -1,9 +1,10 @@
 FROM node:20 as node
 WORKDIR /app
 COPY package.json /app/
-RUN npm i npm@latest -g
-RUN npm install
-COPY ./ /app/
+COPY pnpm-lock.yaml /app/
+RUN npm i pnpm -g
+RUN pnpm install
+COPY . /app/
 ARG env=prod
 RUN npm run build
 

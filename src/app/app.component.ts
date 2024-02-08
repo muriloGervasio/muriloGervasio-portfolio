@@ -3,6 +3,7 @@ import {
   computed,
   effect,
   ElementRef,
+  HostListener,
   inject,
   Signal,
   signal,
@@ -24,6 +25,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatRippleModule } from '@angular/material/core';
+import { CommonModule } from '@angular/common';
+import { MousePositionService } from './shared/services/mouse-position.service';
 
 @Component({
   selector: 'app-root',
@@ -42,6 +45,7 @@ import { MatRippleModule } from '@angular/material/core';
     MatSlideToggleModule,
     MatButtonModule,
     MatRippleModule,
+    CommonModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -54,6 +58,16 @@ export class AppComponent {
   @ViewChild('experience')
   private readonly experienceComponent!: ElementRef;
   @ViewChild('projects') private readonly projectsComponent!: ElementRef;
+
+  mouseX = signal(0);
+  mouseY = signal(0);
+
+  @HostListener('document:mousemove', ['$event'])
+  onMouseMove(e: MouseEvent) {
+    this.mouseX.set(e.clientX);
+    this.mouseY.set(e.clientY);
+  }
+
   constructor() {
     effect(() => {
       console.log(this.isPt());
